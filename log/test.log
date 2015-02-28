@@ -1,0 +1,1092 @@
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (12.8ms)[0m  CREATE TABLE "answers" ("id" serial primary key, "title" character varying(255), "content" text, "question_id" integer, "user_id" integer, "vote_count" integer DEFAULT 0, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (3.1ms)[0m  [1mCREATE TABLE "categories" ("id" serial primary key, "title" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (3.1ms)[0m  CREATE TABLE "category_questions" ("id" serial primary key, "question_id" integer, "category_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (4.4ms)[0m  [1mCREATE TABLE "questions" ("id" serial primary key, "title" character varying(255), "content" text, "vote_count" integer DEFAULT 0, "user_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (4.0ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying(255), "name" character varying(255), "password" character varying(255), "par_score" integer DEFAULT 100, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (1.7ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.4ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150225184954')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150225041837')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150225183302')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150225183441')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150225183504')
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 298486374)
+  [1m[36mFixture Delete (0.5ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:18:23', '2015-02-26 17:18:23', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:18:23', '2015-02-26 17:18:23', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:18:23', '2015-02-26 17:18:23', 298486374)
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:18:35', '2015-02-26 17:18:35', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:18:35', '2015-02-26 17:18:35', 298486374)[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:18:35', '2015-02-26 17:18:35', 298486374)
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:20:35', '2015-02-26 17:20:35', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:20:35', '2015-02-26 17:20:35', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:20:35', '2015-02-26 17:20:35', 298486374)
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:20:41', '2015-02-26 17:20:41', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:20:41', '2015-02-26 17:20:41', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:20:41', '2015-02-26 17:20:41', 298486374)
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:09', '2015-02-26 17:21:09', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:09', '2015-02-26 17:21:09', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:09', '2015-02-26 17:21:09', 298486374)
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:24', '2015-02-26 17:21:24', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:24', '2015-02-26 17:21:24', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 298486374)[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:24', '2015-02-26 17:21:24', 298486374)
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:52', '2015-02-26 17:21:52', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:52', '2015-02-26 17:21:52', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:52', '2015-02-26 17:21:52', 298486374)
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:58', '2015-02-26 17:21:58', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:21:58', '2015-02-26 17:21:58', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:21:58', '2015-02-26 17:21:58', 298486374)
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:26:10', '2015-02-26 17:26:10', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:26:10', '2015-02-26 17:26:10', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 980190962)[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:26:10', '2015-02-26 17:26:10', 298486374)
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:26:26', '2015-02-26 17:26:26', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:26:26', '2015-02-26 17:26:26', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 298486374)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 980190962)[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:26:26', '2015-02-26 17:26:26', 298486374)
+  [1m[36m (16.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:27:02', '2015-02-26 17:27:02', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:27:02', '2015-02-26 17:27:02', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:27:02', '2015-02-26 17:27:02', 298486374)
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.5ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:27:49', '2015-02-26 17:27:49', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:27:49', '2015-02-26 17:27:49', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 980190962)
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:27:49', '2015-02-26 17:27:49', 298486374)
+  [1m[36m (0.9ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 298486374)
+  [1m[36mFixture Delete (0.4ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.3ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:28:04', '2015-02-26 17:28:04', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:28:04', '2015-02-26 17:28:04', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.3ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:28:04', '2015-02-26 17:28:04', 298486374)
+  [1m[36m (1.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:29:19', '2015-02-26 17:29:19', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:29:19', '2015-02-26 17:29:19', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:29:19', '2015-02-26 17:29:19', 298486374)
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.5ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:29:47', '2015-02-26 17:29:47', 980190962)
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:29:47', '2015-02-26 17:29:47', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 298486374)[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:29:47', '2015-02-26 17:29:47', 298486374)
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "answers" DISABLE TRIGGER ALL;ALTER TABLE "categories" DISABLE TRIGGER ALL;ALTER TABLE "category_questions" DISABLE TRIGGER ALL;ALTER TABLE "questions" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.4ms)[0m  DELETE FROM "answers"
+  [1m[36mFixture Insert (0.4ms)[0m  [1mINSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 980190962)[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "answers" ("title", "content", "vote_count", "user_id", "question_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "categories"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:29:57', '2015-02-26 17:29:57', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "categories" ("title", "created_at", "updated_at", "id") VALUES ('MyString', '2015-02-26 17:29:57', '2015-02-26 17:29:57', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "category_questions"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "category_questions" ("question_id", "category_id", "created_at", "updated_at", "id") VALUES (1, 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 298486374)
+  [1m[36mFixture Delete (0.3ms)[0m  [1mDELETE FROM "questions"[0m
+  [1m[35mFixture Insert (0.2ms)[0m  INSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "questions" ("title", "content", "vote_count", "user_id", "created_at", "updated_at", "id") VALUES ('MyString', 'MyText', 1, 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 298486374)[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "users"
+  [1m[36mFixture Insert (0.2ms)[0m  [1mINSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "users" ("email", "name", "password", "par_score", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', 'MyString', 1, '2015-02-26 17:29:57', '2015-02-26 17:29:57', 298486374)
+  [1m[36m (75.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "answers" ENABLE TRIGGER ALL;ALTER TABLE "categories" ENABLE TRIGGER ALL;ALTER TABLE "category_questions" ENABLE TRIGGER ALL;ALTER TABLE "questions" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_create
+----------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------------------------
+QuestionControllerTest: test_should_get_delete
+----------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+---------------------------------------------
+QuestionControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+QuestionControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+QuestionControllerTest: test_should_get_show
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+----------------------------
+CategoryTest: test_the_truth
+----------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_create
+--------------------------------------------
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+--------------------------------------------
+AnswerControllerTest: test_should_get_delete
+--------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_edit
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-------------------------------------------
+AnswerControllerTest: test_should_get_index
+-------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+-----------------------------------------
+AnswerControllerTest: test_should_get_new
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+------------------------------------------
+AnswerControllerTest: test_should_get_show
+------------------------------------------
+  [1m[35m (0.1ms)[0m  ROLLBACK

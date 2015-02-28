@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="AngularRails">
+<head>
+  <title>AngularRails</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div ng-controller='HomeCtrl'>
+    <div>
+      <h2>{{variable}}</h2>
+    </div>
+    <ul ng-repeat='question in questions'>
+      <li>
+        <p>{{question.title}}</p>
+        <p>{{question.content}}</p>
+        <input type="text" ng-model="question.content">
+        <input type="button" value="SUBMIT">
+      </li>
+    </ul>
+  </div>
+
+
+<a HREF="" ng-click='myfunc()'>hi</a>
+
+<%= yield %>
+</body>
+</html>
